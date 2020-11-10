@@ -2,15 +2,25 @@ from django.shortcuts import render, redirect
 from .models import Post
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-
+import requests
 
 # Create your views here.
 
 
 def index(request):
+    dog_api_response = requests.get('https://dog.ceo/api/breeds/image/random')
+    dog_api_response_dictionary = dog_api_response.json()
+    dog = None
+
+    if dog_api_response_dictionary['status'] == 'success':
+        dog = dog_api_response_dictionary['message']
+
     posts = Post.objects.all()
 
-    context = {'posts': posts}
+    context = {
+        'posts': posts,
+        'dog': dog
+    }
 
     return render(request, 'posts/index.html', context)
 

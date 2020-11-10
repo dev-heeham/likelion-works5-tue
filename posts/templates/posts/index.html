@@ -39,4 +39,22 @@
 
     <a href="{% url 'posts:new' %}">글쓰기</a>
   </div>
+
+  {% if dog %}
+    <div class="container">
+      <div class="card">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img class="card-img" src="{{ dog }}" alt="Random Dog Image">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">강아지를 보고 싶다면?</h5>
+              <p class="card-text">Dog API를 활용합시다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
 {% endblock %}

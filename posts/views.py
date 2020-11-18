@@ -10,16 +10,16 @@ import requests
 def index(request):
     dog_api_response = requests.get('https://dog.ceo/api/breeds/image/random')
     dog_api_response_dictionary = dog_api_response.json()
-    dog = None
+    dog2 = None
 
     if dog_api_response_dictionary['status'] == 'success':
-        dog = dog_api_response_dictionary['message']
+        dog2 = dog_api_response_dictionary['message']
 
     posts = Post.objects.all()
 
     context = {
         'posts': posts,
-        'dog': dog
+        'dog': dog2
     }
 
     return render(request, 'posts/index.html', context)
